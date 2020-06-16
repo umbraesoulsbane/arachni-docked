@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+
+    arachni:
+        container_name: arachni_docked
+        image: arachni/arachni:latest
+# Issue using external Postgres: http://support.arachni-scanner.com/discussions/problems/5425-docker-image-not-respecting-env-variable-for-postgres-config
+#        environment: 
+#            DB_ADAPTER: postgresql
+#            DB_HOST: svc_arachnidb
+#            DB_NAME: arachnidb
+#            DB_USER: arachnidb
+#            DB_PASS: PASSWORD
+        ports:
+            - 222:22
+            - 7331:7331
+            - 9292:9292
+  
+#    svc_arachnidb:
+#        container_name: arachni_postgresql
+#        image: postgres:alpine
+#        restart: always
+#        environment:
+#            POSTGRES_DB: arachnidb
+#            POSTGRES_USER: arachnidb
+#            POSTGRES_PASSWORD_FILE: /run/secrets/postgressecrets
+#        volumes:
+#            - vol_arachni_postgres:/var/lib/postgresql/data
+#        ports:
+#            - "5432:5432"
+#        secrets:
+#            - postgressecrets
+
+#volumes:
+#    vol_arachni_postgres:
+
+#secrets:
+#    postgressecrets:
+#        file: ./secrets/postgres_secrets.sample.txt
+
